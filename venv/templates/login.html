@@ -1,0 +1,61 @@
+<html>
+<header>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/default.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</header>
+
+<body>
+    <div class="container">
+        <div class="row" style="display: flex; flex-direction: column; justify-content: center;align-items: center; height: 100%;">
+            <div class="col-md-4" style="background-color: #d4dbe0;box-shadow:  8px 8px 5px #b3afaf">
+                <h4 style="text-align: center; margin-bottom: 30; font-size: 20px; font-weight: bold">Student Manangement App</h4>
+                <form action="http://localhost:5000/login" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="userName" class="col-md-4">
+                                {{ form.userName.label }}
+                        </label>
+                        <div class="col-md-8">
+                            {{ form.userName(class = 'form-control') }}
+                            {% for message in form.userName.errors %}
+                            <div class="error">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd" class="col-md-4">{{ form.passWord.label }}</label>
+                        <div class="col-md-8">
+                            {{ form.passWord(class = 'form-control', type = 'passWord') }}
+                            {% for message in form.passWord.errors %}
+                            <div class="error">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember"> Remember me</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            {% for message in get_flashed_messages() %}
+                                <p class="error">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
